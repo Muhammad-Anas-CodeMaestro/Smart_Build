@@ -11,3 +11,22 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Seller {
+  id             Int            @id @default(autoincrement())
+  store_name     String
+  email          String         @unique
+  password       String
+  api_key        String         @unique
+  db_credentials String
+  created_at     DateTime       @default(now())
+  fieldMappings  FieldMapping[]
+}
+
+model FieldMapping {
+  id           Int      @id @default(autoincrement())
+  seller_id    Int
+  mapping_json String
+  created_at   DateTime @default(now())
+  seller       Seller   @relation(fields: [seller_id], references: [id])
+}
