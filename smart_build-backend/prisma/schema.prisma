@@ -11,6 +11,7 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
 model Seller {
   id             Int            @id @default(autoincrement())
   store_name     String
